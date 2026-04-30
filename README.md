@@ -1,186 +1,59 @@
-# Course Platform
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-A **Laravel 12** web application for selling and managing online courses. It includes a public student-facing site, email **OTP** verification, checkout with **demo**, **Stripe**, or **PayPal** payments, course ratings and reviews, and an **Filament 5** admin panel.
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
----
+## About Laravel
 
-## Features
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-### Public site and students
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-- Home page with categories and courses.
-- Course search (`/search`).
-- **Arabic / English** locale switching (session + `lang/ar.json` translations).
-- Registration and login (based on **Laravel Breeze** with project-specific changes).
-- **Email OTP** verification before accessing protected routes (`verified.otp` middleware).
-- Profile (update details, password, delete account).
-- **My courses** page after purchase.
-- Text reviews and star ratings with authorization policies.
-- **Checkout and enrollment**: discount codes, payment methods:
-  - **demo**: instant completion for local development and tests (on by default in `local`; see `config/payments.php`).
-  - **Stripe Checkout**.
-  - **PayPal** (via `srmklive/paypal`).
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-### Admin panel (Filament)
+## Learning Laravel
 
-- URL: **`/admin`** (Filament login).
-- Only users with role **`admin`** (`User::ROLE_ADMIN`) can access the panel.
-- CRUD-style management for users, categories, courses, discount codes, enrollments, and reviews.
-- Dashboard widgets: overview stats, new users chart, revenue chart.
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
 
-### Quality and tests
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-- Feature tests for authentication, OTP, profile, search, and checkout flows (`tests/`).
+## Laravel Sponsors
 
----
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-## Requirements
+### Premium Partners
 
-| Tool | Notes |
-|------|--------|
-| PHP | ^8.2 |
-| Composer | Recent version |
-| Node.js + npm | For Vite and frontend assets |
-| Database | **MySQL** (recommended) or **SQLite** for quick local trials |
+- **[Vehikl](https://vehikl.com)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Redberry](https://redberry.international/laravel-development)**
+- **[Active Logic](https://activelogic.com)**
 
----
+## Contributing
 
-## Quick install
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-From the project root:
+## Code of Conduct
 
-```bash
-composer install
-cp .env.example .env
-php artisan key:generate
-```
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-Configure your database in `.env` (MySQL or SQLite; see comments in `.env.example`).
+## Security Vulnerabilities
 
-```bash
-php artisan migrate
-# Optional: rich demo data (categories, courses, payments, enrollments)
-php artisan db:seed
-npm install
-npm run build
-php artisan serve
-```
-
-You can also use the Composer script (creates `.env` if missing, generates key, migrates, builds assets):
-
-```bash
-composer run setup
-```
-
----
-
-## Daily development
-
-Run the app server, Vite, queue worker, and logs together:
-
-```bash
-composer run dev
-```
-
-Or manually:
-
-```bash
-php artisan serve
-npm run dev
-```
-
-In local development, the **demo** payment option is usually available on checkout without Stripe/PayPal keys. See `config/payments.php` and the environment variables below.
-
----
-
-## Demo accounts after `db:seed`
-
-| Role | Email | Password (factory default) |
-|------|-------|------------------------------|
-| Admin (Filament + same user record) | `admin@example.com` | `password` |
-| Sample student | `student@example.com` | `password` |
-
-> Change passwords immediately in any non-local environment.
-
----
-
-## Important environment variables
-
-Copy from `.env.example` and adjust for your environment:
-
-| Variable | Description |
-|----------|-------------|
-| `APP_URL` | Application URL (important for Stripe/PayPal return URLs) |
-| `DB_*` | MySQL settings, or switch to SQLite as documented in `.env.example` |
-| `MAIL_*` | Outbound mail (required for OTP in production; often `log` locally) |
-| `PAYMENT_GATEWAY` | `demo`, `stripe`, or `paypal` |
-| `PAYMENT_DEMO_ENABLED` | Show or hide the demo payment option (defaults depend on `APP_ENV`) |
-| `STRIPE_KEY` / `STRIPE_SECRET` / `STRIPE_WEBHOOK_SECRET` | Stripe integration |
-| `PAYPAL_MODE`, `PAYPAL_CLIENT_ID`, `PAYPAL_SECRET` (and sandbox/live variants per package docs) | PayPal integration |
-
-The `.env` file is **not** committed (see `.gitignore`). Share configuration with your team via `.env.example` only.
-
----
-
-## Tests
-
-```bash
-composer test
-```
-
-or:
-
-```bash
-php artisan test
-```
-
----
-
-## Project layout (summary)
-
-```
-app/
-  Filament/          # Filament resources and admin UI
-  Http/Controllers/  # Public site, auth, courses, checkout, search
-  Http/Middleware/   # Locale, OTP verification gate
-  Models/            # User, Course, Category, Enrollment, Payment, ...
-  Services/          # OTP, course pricing, payment gateways
-config/
-  payments.php       # Payment gateway and demo settings
-database/
-  migrations/        # Schema
-  seeders/           # DatabaseSeeder
-resources/
-  views/             # Blade (public, auth, courses, checkout)
-routes/
-  web.php            # Web routes (public + authenticated)
-  auth.php           # Breeze-style auth routes
-```
-
----
-
-## Notable routes
-
-| Path | Description |
-|------|-------------|
-| `/` | Home |
-| `/search` | Search |
-| `/categories/{category}` | Category |
-| `/courses/{course}` | Course details |
-| `/login`, `/register` | Authentication |
-| `/verify-email-otp` | OTP entry after registration |
-| `/my-courses` | Purchased courses (after verification) |
-| `/courses/{course}/checkout` | Payment and enrollment |
-| `/admin` | Filament admin (admins only) |
-
----
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
-This project builds on Laravel and third-party packages; see `composer.json` for package licenses. The default Laravel application skeleton is **MIT** unless stated otherwise.
-
----
-
-## Contributing / coursework notes
-
-Document database changes with migrations, run tests before submission, and never commit payment secrets or a real `.env` to a public repository.
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
