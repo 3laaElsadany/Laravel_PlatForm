@@ -2,11 +2,14 @@
 
 namespace App\Filament\Resources\Courses\Schemas;
 
+use App\Models\User;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
 
 class CourseForm
 {
@@ -14,6 +17,20 @@ class CourseForm
     {
         return $schema
             ->components([
+                Hidden::make('instructor_id')
+                    ->default(fn (): ?int => auth()->id())
+                    ->visible(fn (): bool => auth()->user()?->isTeacher() ?? false)
+                    ->dehydrated(fn (): bool => auth()->user()?->isTeacher() ?? false),
+                Select::make('instructor_id')
+                    ->relationship(
+                        'instructor',
+                        'fullname',
+                        fn (Builder $query) => $query->whereIn('role', [User::ROLE_ADMIN, User::ROLE_TEACHER])
+                    )
+                    ->searchable()
+                    ->preload()
+                    ->required()
+                    ->visible(fn (): bool => auth()->user()?->isAdmin() ?? false),
                 TextInput::make('title')
                     ->required()
                     ->maxLength(255),

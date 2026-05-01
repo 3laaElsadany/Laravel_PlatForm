@@ -2,11 +2,13 @@
 
 namespace App\Filament\Resources\DiscountCodes\Schemas;
 
+use App\Support\FilamentInstructor;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
 
 class DiscountCodeForm
 {
@@ -15,7 +17,7 @@ class DiscountCodeForm
         return $schema
             ->components([
                 Select::make('course_id')
-                    ->relationship('course', 'title')
+                    ->relationship('course', 'title', fn (Builder $q) => FilamentInstructor::limitCoursesQuery($q))
                     ->searchable()
                     ->preload()
                     ->required(),

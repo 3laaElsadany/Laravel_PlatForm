@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         $pricing = app(CoursePricingService::class);
 
-        User::factory()->admin()->create([
+        $admin = User::factory()->admin()->create([
             'fullname' => 'أحمد المدرب — Instructor',
             'email' => 'admin@example.com',
             'isVerified' => true,
@@ -95,6 +95,7 @@ class DatabaseSeeder extends Seeder
                 'price' => $row['price'],
                 'discount' => $row['discount'],
                 'category_id' => $cat->id,
+                'instructor_id' => $admin->id,
                 'rate' => $row['rate'],
                 'catalog_rate' => $row['rate'],
                 'course_includes' => [

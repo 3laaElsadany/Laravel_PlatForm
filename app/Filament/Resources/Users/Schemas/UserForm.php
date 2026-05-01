@@ -43,7 +43,8 @@ class UserForm
                 Select::make('role')
                     ->options([
                         User::ROLE_STUDENT => 'Student',
-                        User::ROLE_ADMIN => 'Instructor (admin)',
+                        User::ROLE_TEACHER => 'Instructor',
+                        User::ROLE_ADMIN => 'Admin',
                     ])
                     ->required()
                     ->native(false),

@@ -27,6 +27,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public const ROLE_STUDENT = 'student';
 
+    public const ROLE_TEACHER = 'teacher';
+
     public $timestamps = false;
 
     const CREATED_AT = 'created_at';
@@ -98,9 +100,19 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->hasMany(Payment::class);
     }
 
+    public function courses(): HasMany
+    {
+        return $this->hasMany(Course::class, 'instructor_id');
+    }
+
     public function isAdmin(): bool
     {
         return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isTeacher(): bool
+    {
+        return $this->role === self::ROLE_TEACHER;
     }
 
     public function getAvatarUrlAttribute(): ?string

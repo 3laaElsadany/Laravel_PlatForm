@@ -16,6 +16,11 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->isAdmin() ?? false;
+    }
+
     protected static ?string $modelLabel = 'مستخدم';
 
     protected static ?string $pluralModelLabel = 'المستخدمون';

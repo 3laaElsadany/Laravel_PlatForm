@@ -6,15 +6,28 @@ use App\Filament\Resources\DiscountCodes\Pages\ListDiscountCodes;
 use App\Filament\Resources\DiscountCodes\Schemas\DiscountCodeForm;
 use App\Filament\Resources\DiscountCodes\Tables\DiscountCodesTable;
 use App\Models\DiscountCode;
+use App\Support\FilamentInstructor;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class DiscountCodeResource extends Resource
 {
     protected static ?string $model = DiscountCode::class;
+
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+        $id = FilamentInstructor::instructorId();
+        if ($id !== null) {
+            $query->whereHas('course', fn (Builder $q) => $q->where('instructor_id', $id));
+        }
+
+        return $query;
+    }
 
     protected static ?string $modelLabel = 'كود خصم';
 

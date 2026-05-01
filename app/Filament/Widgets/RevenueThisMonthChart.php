@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Payment;
+use App\Support\FilamentInstructor;
 use Filament\Widgets\ChartWidget;
 use Illuminate\Support\Carbon;
 
@@ -29,12 +30,19 @@ class RevenueThisMonthChart extends ChartWidget
         $labels = [];
         $data = [];
 
+        $instructorId = FilamentInstructor::instructorId();
+
         for ($day = $start->copy(); $day->lte($end); $day->addDay()) {
             $labels[] = $day->format('j');
-            $sum = Payment::query()
+            $q = Payment::query()
                 ->where('status', 'completed')
-                ->whereDate('paid_at', $day->toDateString())
-                ->sum('amount');
+                ->whereDate('paid_at', $day->toDateString());
+
+            if ($instructorId !== null) {
+                $q->whereHas('course', fn ($cq) => $cq->where('instructor_id', $instructorId));
+            }
+
+            $sum = $q->sum('amount');
             $data[] = round((float) $sum, 2);
         }
 

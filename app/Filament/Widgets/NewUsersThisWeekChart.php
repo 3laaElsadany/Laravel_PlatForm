@@ -8,6 +8,11 @@ use Illuminate\Support\Carbon;
 
 class NewUsersThisWeekChart extends ChartWidget
 {
+    public static function canView(): bool
+    {
+        return auth()->user()?->isAdmin() ?? false;
+    }
+
     protected static ?int $sort = 2;
 
     protected ?string $heading = 'تسجيلات المستخدمين هذا الأسبوع';

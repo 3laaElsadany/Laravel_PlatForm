@@ -133,5 +133,18 @@
     "Remove my rating": "إزالة تقييمي",
     ":stars out of 5 stars": ":stars من 5 نجوم",
     "Your course rating was saved.": "تم حفظ تقييمك للدورة.",
-    "Your course rating was removed.": "تمت إزالة تقييمك للدورة."
+    "Your course rating was removed.": "تمت إزالة تقييمك للدورة.",
+    "Dashboard": "لوحة التحكم",
+    "Create an account": "إنشاء حساب",
+    "Account type": "نوع الحساب",
+    "I am a student": "أنا طالب",
+    "I am an instructor": "أنا مدرّس",
+    "Your courses": "دوراتك",
+    "Discount codes": "أكواد الخصم",
+    "Subscriptions": "الاشتراكات",
+    "Completed purchases": "عمليات الشراء المكتملة",
+    "Total revenue": "إجمالي الإيرادات",
+    "Open instructor panel": "فتح لوحة المدرّس",
+    "Go to my courses": "الانتقال إلى دوراتي",
+    "Instructor panel": "لوحة المدرّس"
 }

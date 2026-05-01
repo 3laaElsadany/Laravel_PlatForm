@@ -22,6 +22,7 @@ class Course extends Model
         'price',
         'discount',
         'category_id',
+        'instructor_id',
         'rate',
         'catalog_rate',
         'course_includes',
@@ -53,6 +54,11 @@ class Course extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function instructor(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'instructor_id');
     }
 
     public function reviews(): HasMany

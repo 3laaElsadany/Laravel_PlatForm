@@ -25,7 +25,7 @@ class RegisteredUserController extends Controller
             'fullname' => $request->string('fullname')->toString(),
             'email' => $request->string('email')->toString(),
             'password' => Hash::make($request->string('password')->toString()),
-            'role' => User::ROLE_STUDENT,
+            'role' => $request->validated('role'),
             'isVerified' => false,
         ]);
 

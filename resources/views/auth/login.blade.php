@@ -48,7 +48,7 @@
     @if (Route::has('register'))
         <p class="mt-6 border-t border-gray-200 pt-6 text-center text-sm text-gray-600">
             {{ __('New here?') }}
-            <a href="{{ route('register') }}" class="font-semibold text-indigo-600 hover:text-indigo-800 underline">{{ __('Create a student account') }}</a>
+            <a href="{{ route('register') }}" class="font-semibold text-indigo-600 hover:text-indigo-800 underline">{{ __('Create an account') }}</a>
         </p>
     @endif
 </x-guest-layout>

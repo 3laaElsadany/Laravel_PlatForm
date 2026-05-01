@@ -28,6 +28,11 @@ class CoursesTable
                         $query->whereHas('category', fn ($q) => $q->where('name', 'like', '%'.$search.'%'));
                     })
                     ->toggleable(),
+                TextColumn::make('instructor.fullname')
+                    ->label('Instructor')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('price')
                     ->money('usd')
                     ->sortable()

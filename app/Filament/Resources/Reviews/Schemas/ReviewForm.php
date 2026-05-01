@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\Reviews\Schemas;
 
+use App\Support\FilamentInstructor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
 
 class ReviewForm
 {
@@ -13,7 +15,7 @@ class ReviewForm
         return $schema
             ->components([
                 Select::make('course_id')
-                    ->relationship('course', 'title')
+                    ->relationship('course', 'title', fn (Builder $q) => FilamentInstructor::limitCoursesQuery($q))
                     ->searchable()
                     ->preload()
                     ->required(),

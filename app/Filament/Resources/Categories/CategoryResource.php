@@ -16,6 +16,11 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->isAdmin() ?? false;
+    }
+
     protected static ?string $modelLabel = 'تصنيف';
 
     protected static ?string $pluralModelLabel = 'التصنيفات';

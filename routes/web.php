@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourseCheckoutController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseRatingController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyCoursesController;
 use App\Http\Controllers\ProfileController;
@@ -34,9 +35,9 @@ Route::get('/categories/{category}', [CategoryController::class, 'show'])->name(
 
 Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified.otp'])->name('dashboard');
+Route::get('/dashboard', DashboardController::class)
+    ->middleware(['auth', 'verified.otp'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/verify-email-otp', [OtpVerificationController::class, 'show'])->name('verification.otp.show');
