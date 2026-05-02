@@ -13,12 +13,15 @@
                         {{ __('Courses') }}
                     </x-nav-link>
                     @auth
-                        @if(auth()->user()->isVerified)
-                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                                {{ __('Dashboard') }}
+                        @if(auth()->user()->isVerified && auth()->user()->isAdmin())
+                            <x-nav-link :href="url('/admin')" :active="request()->is('admin*')">
+                                {{ __('Admin') }}
                             </x-nav-link>
-                        @endif
-                        @if(auth()->user()->isVerified && auth()->user()->role === \App\Models\User::ROLE_STUDENT)
+                        @elseif(auth()->user()->isVerified && auth()->user()->isTeacher())
+                            <x-nav-link :href="url('/admin')" :active="request()->is('admin*')">
+                                {{ __('Instructor panel') }}
+                            </x-nav-link>
+                        @elseif(auth()->user()->isVerified && auth()->user()->role === \App\Models\User::ROLE_STUDENT)
                             <x-nav-link :href="route('my-courses')" :active="request()->routeIs('my-courses')">
                                 {{ __('My courses') }}
                             </x-nav-link>
@@ -80,12 +83,15 @@
                 {{ __('Courses') }}
             </x-responsive-nav-link>
             @auth
-                @if(auth()->user()->isVerified)
-                    <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                @if(auth()->user()->isVerified && auth()->user()->isAdmin())
+                    <x-responsive-nav-link :href="url('/admin')" :active="request()->is('admin*')">
+                        {{ __('Admin') }}
                     </x-responsive-nav-link>
-                @endif
-                @if(auth()->user()->isVerified && auth()->user()->role === \App\Models\User::ROLE_STUDENT)
+                @elseif(auth()->user()->isVerified && auth()->user()->isTeacher())
+                    <x-responsive-nav-link :href="url('/admin')" :active="request()->is('admin*')">
+                        {{ __('Instructor panel') }}
+                    </x-responsive-nav-link>
+                @elseif(auth()->user()->isVerified && auth()->user()->role === \App\Models\User::ROLE_STUDENT)
                     <x-responsive-nav-link :href="route('my-courses')" :active="request()->routeIs('my-courses')">
                         {{ __('My courses') }}
                     </x-responsive-nav-link>

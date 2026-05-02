@@ -42,7 +42,7 @@
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <p class="mb-4">{{ __("You're logged in!") }}</p>
                         <p class="text-sm text-gray-600 dark:text-gray-400">
-                            <a href="{{ route('my-courses') }}" class="font-semibold text-indigo-600 underline hover:text-indigo-800 dark:text-indigo-400">{{ __('Go to my courses') }}</a>
+                            <a href="{{ url('/admin') }}" class="font-semibold text-indigo-600 underline hover:text-indigo-800 dark:text-indigo-400">{{ __('Admin panel') }}</a>
                         </p>
                     </div>
                 </div>

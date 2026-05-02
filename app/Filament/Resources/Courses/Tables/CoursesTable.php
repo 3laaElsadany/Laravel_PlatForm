@@ -23,14 +23,14 @@ class CoursesTable
                     ->toggleable(),
                 TextColumn::make('category.name')
                     ->label('Category')
-                    ->sortable()
+                    ->sortable(false)
                     ->searchable(query: function ($query, string $search): void {
                         $query->whereHas('category', fn ($q) => $q->where('name', 'like', '%'.$search.'%'));
                     })
                     ->toggleable(),
                 TextColumn::make('instructor.fullname')
                     ->label('Instructor')
-                    ->sortable()
+                    ->sortable(false)
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('price')

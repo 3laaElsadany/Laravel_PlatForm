@@ -62,7 +62,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->role === self::ROLE_ADMIN;
+        return $this->isAdmin() || $this->isTeacher();
     }
 
     public function getFilamentName(): string

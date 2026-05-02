@@ -50,7 +50,6 @@
                     <a href="{{ route('home') }}" class="rounded-lg px-3.5 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white">{{ __('Courses') }}</a>
                     @auth
                         @if(auth()->user()->isVerified)
-                            <a href="{{ route('dashboard') }}" class="rounded-lg px-3.5 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white">{{ __('Dashboard') }}</a>
                             @if(auth()->user()->role === \App\Models\User::ROLE_STUDENT)
                                 <a href="{{ route('my-courses') }}" class="rounded-lg px-3.5 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white">{{ __('My courses') }}</a>
                             @endif

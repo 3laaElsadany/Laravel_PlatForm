@@ -27,13 +27,13 @@ class EnrollmentsTable
                             });
                         });
                     })
-                    ->sortable()
+                    ->sortable(false)
                     ->toggleable(),
                 TextColumn::make('course.title')
                     ->searchable(query: function ($query, string $search): void {
                         $query->whereHas('course', fn ($q) => $q->where('title', 'like', '%'.$search.'%'));
                     })
-                    ->sortable()
+                    ->sortable(false)
                     ->toggleable(),
                 TextColumn::make('final_price')
                     ->money('usd')
@@ -63,7 +63,7 @@ class EnrollmentsTable
                 //
             ])
             ->headerActions([
-                CreateAction::make()->slideOver(),
+                // CreateAction::make()->slideOver(),
             ])
             ->recordActions([
                 ViewAction::make()->slideOver(),

@@ -24,7 +24,7 @@
                     </div>
                     <h3 class="mt-4 text-xl font-bold text-slate-900 group-hover:text-brand-700 dark:text-slate-50 dark:group-hover:text-brand-400">{{ $category->name }}</h3>
                     <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600 line-clamp-3 dark:text-slate-300">{{ $category->description }}</p>
-                    <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">{{ trans_choice(':count course|:count courses', $category->courses->count(), ['count' => $category->courses->count()]) }}</p>
+                    <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">{{ trans_choice(':count course|:count courses', $category->courses_count, ['count' => $category->courses_count]) }}</p>
                 </a>
             @endforeach
         </div>

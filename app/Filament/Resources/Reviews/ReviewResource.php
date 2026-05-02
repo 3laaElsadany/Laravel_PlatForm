@@ -23,7 +23,7 @@ class ReviewResource extends Resource
         $query = parent::getEloquentQuery();
         $id = FilamentInstructor::instructorId();
         if ($id !== null) {
-            $query->whereHas('course', fn (Builder $q) => $q->where('instructor_id', $id));
+            FilamentInstructor::scopeToInstructorCourseIds($query, $id);
         }
 
         return $query;

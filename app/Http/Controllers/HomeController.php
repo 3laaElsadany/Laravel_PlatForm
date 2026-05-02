@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function __invoke(): View
     {
         $categories = Category::query()
-            ->with(['courses' => fn ($q) => $q->latest('created_at')->limit(4)])
+            ->withCount('courses')
             ->orderBy('name')
             ->get();
 

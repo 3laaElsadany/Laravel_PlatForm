@@ -23,7 +23,7 @@ class DiscountCodesTable
                     ->searchable(query: function ($query, string $search): void {
                         $query->whereHas('course', fn ($q) => $q->where('title', 'like', '%'.$search.'%'));
                     })
-                    ->sortable()
+                    ->sortable(false)
                     ->toggleable(),
                 TextColumn::make('code')
                     ->searchable()
